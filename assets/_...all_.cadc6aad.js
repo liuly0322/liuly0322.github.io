@@ -1,0 +1,1 @@
+import{_ as n,b as e}from"./index.7bdc7ca3.js";import{o as _,b as c,z as r,W as s}from"./vendor.4a2b8aa4.js";const t={};function a(l,i){const o=s;return _(),c("div",null,[r(o,{status:"404",title:"404 \u8D44\u6E90\u4E0D\u5B58\u5728",description:"\u751F\u6D3B\u603B\u5F52\u5E26\u70B9\u8352\u8C2C"})])}typeof e=="function"&&e(t);var u=n(t,[["render",a]]);export{u as default};
