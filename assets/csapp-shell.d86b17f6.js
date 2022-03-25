@@ -1,0 +1,1 @@
+import{U as e,o as s,f as o,g as a}from"./vendor.73cabf68.js";const c={class:"prose prose-sm m-auto text-left"},r=a("p",null,"123123",-1),n=[r],u=[],h={setup(_,{expose:t}){return t({frontmatter:{meta:[]}}),e({meta:[]}),(p,l)=>(s(),o("div",c,n))}};export{h as default,u as meta};
