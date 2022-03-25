@@ -1,0 +1,1 @@
+import{d as o,D as e}from"./vendor.7c0e141b.js";import{b as t}from"./route-block.67f66939.js";const r=o({setup(s){return e(),(n,i)=>" this is main "}});typeof t=="function"&&t(r);export{r as default};
