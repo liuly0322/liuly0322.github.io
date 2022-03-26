@@ -1,1 +1,0 @@
-import{o as e,i as o,j as s}from"./vendor.d4b34cc3.js";const a={class:"md-blog m-auto text-left"},r=s("p",null,"Here is tags!",-1),c=[r],d={setup(n,{expose:t}){return t({frontmatter:{}}),(l,i)=>(e(),o("div",a,c))}};export{d as default};
