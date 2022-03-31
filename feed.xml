@@ -3,7 +3,7 @@
 <channel>
 	<title>liuly's Blog</title>
 	<description>liuly's Blog</description>
-	<lastBuildDate>Wed, 30 Mar 2022 13:54:38 -0000</lastBuildDate>
+	<lastBuildDate>Thu, 31 Mar 2022 20:45:29 -0000</lastBuildDate>
 	<link>http://blog.liuly.moe</link>
 	<atom:link href="http://blog.liuly.moe/feed.xml" rel="self" type="application/rss+xml" />
 	<generator>Q-Blog</generator><item><link>http://blog.liuly.moe/posts/Hello-New-World/</link><guid>http://blog.liuly.moe/posts/Hello-New-World/</guid><title>Hello New World</title><pubDate>Mon, 28 Mar 2022 13:50:20 -0000</pubDate><description>博客搬迁至自建 Vue3 框架
@@ -245,5 +245,4 @@ $$0  \le x_{n} \le x_{n-1} \le ... \le x_{2} \le x_{1} \le a$$
 
 本人目前使用 ubuntu，故下文的操作方法均为 ubuntu 下。实际上这里跟着官方文档走就行了，没啥大问题。在安装 hexo 之前，需要先安装 node.js 和 git。
 
-</description></item></channel>
-</rss>
+</description></item></channel></rss>

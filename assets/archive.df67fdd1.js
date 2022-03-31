@@ -1,0 +1,1 @@
+import{_ as n}from"./ArchiveCard.45bfde65.js";import{S as t}from"./index.b0d44200.js";import{d as a,v as m,o as s,e as c,g as u}from"./vendor.fb734e8d.js";const d=a({setup(_){var o;const e=(o=m(t))!=null?o:[];return(p,i)=>{const r=n;return s(),c(r,{title:"\u5F52\u6863",summary:u(e)},null,8,["summary"])}}});export{d as default};
