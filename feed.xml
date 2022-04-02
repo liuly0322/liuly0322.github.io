@@ -3,7 +3,7 @@
 <channel>
 	<title>liuly's Blog</title>
 	<description>liuly's Blog</description>
-	<lastBuildDate>Thu, 31 Mar 2022 20:45:29 -0000</lastBuildDate>
+	<lastBuildDate>Sat, 02 Apr 2022 16:40:33 -0000</lastBuildDate>
 	<link>http://blog.liuly.moe</link>
 	<atom:link href="http://blog.liuly.moe/feed.xml" rel="self" type="application/rss+xml" />
 	<generator>Q-Blog</generator><item><link>http://blog.liuly.moe/posts/Hello-New-World/</link><guid>http://blog.liuly.moe/posts/Hello-New-World/</guid><title>Hello New World</title><pubDate>Mon, 28 Mar 2022 13:50:20 -0000</pubDate><description>博客搬迁至自建 Vue3 框架
@@ -73,13 +73,13 @@
 
 成品：
 
-![一元稀疏多项式计算器](http://120.24.73.184/i/2021/10/03/n93k5g.jpg)
+![一元稀疏多项式计算器](/posts/n93k5g.jpg)
 
 [成品网页](http://home.ustc.edu.cn/~liuly0322/homework/poly/)
 
 </description></item><item><link>http://blog.liuly.moe/posts/serverless-valine/</link><guid>http://blog.liuly.moe/posts/serverless-valine/</guid><title>Valine 评论系统及 Serverless 浅探</title><pubDate>Thu, 16 Sep 2021 00:08:47 -0000</pubDate><description>事情起因是这样的：
 
-![起因](http://120.24.73.184/i/2021/09/15/1269gtz.jpg)
+![起因](/posts/1269gtz.jpg)
 
 于是遂决定给自己的博客实现 **最近评论** 功能。
 
@@ -127,7 +127,7 @@ $f(n)=\omega (g(n))$，当且仅当 $f(n)$ 比 $g(n)$ 高阶。
 
 </description></item><item><link>http://blog.liuly.moe/posts/first-php/</link><guid>http://blog.liuly.moe/posts/first-php/</guid><title>前后端分离实现简易备忘系统</title><pubDate>Thu, 15 Jul 2021 10:48:45 -0000</pubDate><description>本博客将介绍简易备忘系统的前后端分离实现。
 
-![备忘](http://120.24.73.184/i/2021/07/15/he2h6k.png)
+![备忘](/posts/he2h6k.png)
 
 由于本人此时只学了一点点前端，后端的 php 都是凭感觉查的文档，本篇博客仅记录学习及实现过程，可能代码确实写的很烂（）
 
@@ -153,11 +153,11 @@ $f(n)=\omega (g(n))$，当且仅当 $f(n)$ 比 $g(n)$ 高阶。
 
 活动有两个部分：
 
-![爆款直降](http://120.24.73.184/i/2021/07/13/zjrqz4.png)
+![爆款直降](/posts/zjrqz4.png)
 
 此部分是给一些优惠价格，最便宜的服务器一年大概 100 （其实个人普通使用最便宜的那种似乎就够了
 
-![学生专享](http://120.24.73.184/i/2021/07/13/zksspk.png)
+![学生专享](/posts/zksspk.png)
 
 第二部分的话看左边那个，完成一些小操作练习（都是些 linux 和服务器的基本操作）后即可白嫖两个月
 
