@@ -1,0 +1,1 @@
+import{d as o,m as n,a1 as c,ad as u,a4 as l,ab as p}from"./index.da1d9fd3.js";import{_ as i}from"./ArchiveCard.1aa50cd3.js";const y=o({props:{tag:null},setup(s){const a=s,e=p(),r=n(()=>e.value.filter(t=>t.tags.includes(a.tag)));return(t,_)=>{const m=i;return c(),u(m,{title:a.tag,summary:l(r)},null,8,["title","summary"])}}});export{y as default};
