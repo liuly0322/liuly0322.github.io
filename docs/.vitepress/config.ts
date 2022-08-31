@@ -18,6 +18,7 @@ const config = defineConfig({
       },
     ],
     nav,
+    lastUpdatedText: 'Updated Date',
   },
 })
 
