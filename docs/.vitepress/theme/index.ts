@@ -9,6 +9,7 @@ export default {
       sakana.style.position = 'fixed'
       sakana.style.right = '0'
       sakana.style.bottom = '0'
+      sakana.style.zIndex = '20'
       document.body.appendChild(sakana)
 
       const script = document.createElement('script')
