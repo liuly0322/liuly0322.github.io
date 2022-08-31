@@ -1,25 +1,34 @@
 import DefaultTheme from 'vitepress/theme'
-import SakanaWidget from 'sakana-widget'
-
-/**
- * 使用第三方组件库
- * 详情参考：https://github.com/FightingDesign/fighting-design
- */
-import FightingDesign from 'fighting-design'
-import 'fighting-design/dist/index.css'
 
 export default {
   ...DefaultTheme,
-  enhanceApp({ app }) {
-    app.use(FightingDesign)
-  },
-  setup() {
-    const sakana = document.createElement('div')
-    sakana.id = 'sakana'
-    sakana.style.position = 'fixed'
-    sakana.style.right = '1em'
-    sakana.style.bottom = '1em'
-    document.body.appendChild(sakana)
-    new SakanaWidget().mount('#sakana')
+  async setup() {
+    if (typeof window !== 'undefined') {
+      const sakana = document.createElement('div')
+      sakana.id = 'sakana'
+      sakana.style.position = 'fixed'
+      sakana.style.right = '1em'
+      sakana.style.bottom = '1em'
+      document.body.appendChild(sakana)
+
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src =
+        'https://cdn.jsdelivr.net/npm/sakana-widget@2.2.1/lib/sakana.min.js'
+      document.body.appendChild(script)
+
+      const loop = document.createElement('script')
+      loop.type = 'text/javascript'
+      loop.appendChild(
+        document.createTextNode(`(async function loop() {
+        const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+        while (window && window.SakanaWidget === undefined) {
+            await sleep(100)
+        }
+        new SakanaWidget().mount('#sakana');
+    })()`)
+      )
+      document.body.appendChild(loop)
+    }
   },
 }

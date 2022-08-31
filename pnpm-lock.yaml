@@ -2,16 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   '@algolia/client-search': ^4.14.2
-  fighting-design: 0.6.2-alpha.2
-  sakana-widget: ^2.2.1
   vite: ^3.0.8
   vitepress: 1.0.0-alpha.10
   vue: ^3.2.33
 
 dependencies:
   '@algolia/client-search': 4.14.2
-  fighting-design: 0.6.2-alpha.2
-  sakana-widget: 2.2.1
   vite: 3.0.9
   vitepress: 1.0.0-alpha.10_tbpndr44ulefs3hehwpi2mkf2y
   vue: 3.2.37
@@ -202,10 +198,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /@juggle/resize-observer/3.4.0:
-    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
-    dev: false
 
   /@types/web-bluetooth/0.0.15:
     resolution: {integrity: sha512-w7hEHXnPMEZ+4nGKl/KDRVpxkwYxYExuHOYXyzIzCDzEZ9ZCGMAewulr9IqJu2LR4N37fcnb1XVeuZ09qgOxhA==}
@@ -574,10 +566,6 @@ packages:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: false
 
-  /fighting-design/0.6.2-alpha.2:
-    resolution: {integrity: sha512-BT9z9ubNwdFYqa15hPweA6BXJjS2oo1pUFxodVhdeCwVA4tucnON4KgVnCYecIfbsXFYLArnjKWOvzMIqtiGIg==}
-    dev: false
-
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -655,12 +643,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
-    dev: false
-
-  /sakana-widget/2.2.1:
-    resolution: {integrity: sha512-3k5cxGd/k0JumuNnkTJjr6J2hRo9dvTRLc83w6GuiLIk5H2z5Xw5XQ6YtKlnWRes54CChS4Y9QivimiHKu67Nw==}
-    dependencies:
-      '@juggle/resize-observer': 3.4.0
     dev: false
 
   /shiki/0.11.1:
