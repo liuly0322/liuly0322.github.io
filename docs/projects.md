@@ -85,9 +85,7 @@ USTC 数字电路实验和计组会用
 
 ### 哈夫曼压缩
 
-一个 CLI 的压缩工具，不过超级慢
-
-<https://github.com/liuly0322/HuffmanCompress>
+一个 CLI 的压缩工具，不过超级慢，[链接](https://github.com/liuly0322/HuffmanCompress)
 
 ## X-数独求解
 
