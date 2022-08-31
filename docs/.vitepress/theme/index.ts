@@ -7,8 +7,8 @@ export default {
       const sakana = document.createElement('div')
       sakana.id = 'sakana'
       sakana.style.position = 'fixed'
-      sakana.style.right = '1em'
-      sakana.style.bottom = '1em'
+      sakana.style.right = '0'
+      sakana.style.bottom = '0'
       document.body.appendChild(sakana)
 
       const script = document.createElement('script')
