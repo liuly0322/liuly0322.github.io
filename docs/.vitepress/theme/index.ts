@@ -4,6 +4,8 @@ export default {
   ...DefaultTheme,
   async setup() {
     if (typeof window !== 'undefined') {
+      const SakanaWidget = (await import('./sakana')).default
+
       const sakana = document.createElement('div')
       sakana.id = 'sakana'
       sakana.style.position = 'fixed'
@@ -12,24 +14,14 @@ export default {
       sakana.style.zIndex = '20'
       document.body.appendChild(sakana)
 
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src =
-        'https://cdn.jsdelivr.net/npm/sakana-widget@2.2.1/lib/sakana.min.js'
-      document.body.appendChild(script)
-
-      const loop = document.createElement('script')
-      loop.type = 'text/javascript'
-      loop.appendChild(
-        document.createTextNode(`(async function loop() {
-        const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-        while (window && window.SakanaWidget === undefined) {
-            await sleep(100)
-        }
-        new SakanaWidget().mount('#sakana');
-    })()`)
-      )
-      document.body.appendChild(loop)
+      const takina = SakanaWidget.getCharacter('takina')
+      takina.initialState = {
+        ...takina.initialState,
+        i: 0.001,
+        d: 1,
+      }
+      SakanaWidget.registerCharacter('takina-slow', takina)
+      new SakanaWidget({ character: 'takina-slow' }).mount('#sakana')
     }
   },
 }
