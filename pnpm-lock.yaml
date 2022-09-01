@@ -2,12 +2,14 @@ lockfileVersion: 5.4
 
 specifiers:
   '@algolia/client-search': ^4.14.2
+  sakana-widget: ^2.2.2
   vite: ^3.0.8
   vitepress: 1.0.0-alpha.10
   vue: ^3.2.33
 
 dependencies:
   '@algolia/client-search': 4.14.2
+  sakana-widget: 2.2.2
   vite: 3.0.9
   vitepress: 1.0.0-alpha.10_tbpndr44ulefs3hehwpi2mkf2y
   vue: 3.2.37
@@ -198,6 +200,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@juggle/resize-observer/3.4.0:
+    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: false
 
   /@types/web-bluetooth/0.0.15:
     resolution: {integrity: sha512-w7hEHXnPMEZ+4nGKl/KDRVpxkwYxYExuHOYXyzIzCDzEZ9ZCGMAewulr9IqJu2LR4N37fcnb1XVeuZ09qgOxhA==}
@@ -643,6 +649,12 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
+
+  /sakana-widget/2.2.2:
+    resolution: {integrity: sha512-miJZq5SZTxHh1toTw4ZkkzU8F5cXHXN1Hg1/cebGbGLdAvXlWxXUdrhNYdPafQIiOdO4997z8evGxKGCTgIJTw==}
+    dependencies:
+      '@juggle/resize-observer': 3.4.0
     dev: false
 
   /shiki/0.11.1:

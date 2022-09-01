@@ -2,7 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import { onMounted } from 'vue'
 
 const sakanaInit = async () => {
-  const SakanaWidget = (await import('./sakana')).default
+  const SakanaWidget = (await import('sakana-widget')).default
 
   const sakana = document.createElement('div')
   sakana.id = 'sakana'
@@ -14,7 +14,7 @@ const sakanaInit = async () => {
   })
   document.body.appendChild(sakana)
 
-  const takina = SakanaWidget.getCharacter('takina')
+  const takina = SakanaWidget.getCharacter('takina')!
   takina.initialState = {
     ...takina.initialState,
     i: 0.001,
