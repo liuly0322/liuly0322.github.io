@@ -18,7 +18,7 @@
 
 ## CODH 大作业
 
-这个太复杂了，懒得概括，上链接 <https://blog.liuly.moe/riscv32-ustc-codh-lab6/>
+这个太复杂了，懒得概括，上链接 <https://liuly.moe/riscv32-ustc-codh-lab6/>
 
 - RV32I 和 RV32IC 指令补全
 - 两级动态 BHT 分支预测
