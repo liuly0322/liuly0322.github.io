@@ -15,7 +15,9 @@ jobs:
         with:
           version: latest
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: build
         run: pnpm i && pnpm run build && touch docs/.vitepress/dist/.nojekyll && echo 'liuly.moe' > docs/.vitepress/dist/CNAME
