@@ -6,7 +6,7 @@
         <div style="font-size: 1.85rem; font-weight: 600">刘良宇</div>
         <div style="margin-bottom: 0.5rem">Student at USTC</div>
         <div style="font-family: Courier New,Courier,monospace;">
-            <div>liuly0322@mail.ustc.edu.cn</div>
+            <div>me@liuly.moe</div>
             <div>qq: 453026205</div>
         </div>
     </div>
