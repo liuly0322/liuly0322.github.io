@@ -135,7 +135,7 @@ USTC 数字电路实验和计组会用。
 
 ![](images/takina.png)
 
-_顺便个人觉得「蒜」(Lycoris Recoil) 还是值得看的_
+_顺便安利一下「蒜」(Lycoris Recoil)_
 
 ## 12. SysYF 编译器
 
