@@ -16,7 +16,7 @@
 
 USTC 20 级本科少年班学院，计算机科学与技术专业在读
 
-爱好是 Computer Science
+爱好 PL/Security
 
 - [qq 音乐歌单](https://i.y.qq.com/n2/m/share/details/taoge.html?id=2363529455)
 - [github](https://github.com/liuly0322)
