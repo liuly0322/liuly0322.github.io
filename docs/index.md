@@ -18,10 +18,5 @@ USTC 20 级本科少年班学院，计算机科学与技术专业在读
 
 爱好 System/PL/Security 及其他 CS 相关~
 
-- [qq 音乐歌单](https://i.y.qq.com/n2/m/share/details/taoge.html?id=2363529455)
 - [github](https://github.com/liuly0322)
-- ~~uid: 500411938~~
-
-## 其他网页
-
-- [我的博客](https://blog.liuly.moe)
+- [博客](https://blog.liuly.moe)
