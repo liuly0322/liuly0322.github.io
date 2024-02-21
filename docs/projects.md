@@ -1,6 +1,6 @@
-# 项目
+# 企划
 
-介绍下零零散散做的一些有点意思的东西。大致按照时间顺序。
+课设及一些放在 GitHub 上的东西的介绍。大致按照时间顺序。
 
 ## 1. X-数独求解
 
@@ -40,7 +40,7 @@ Qt 写的 C++ 应用，实现了多线程和 A\* 搜索。
 
 数字电路实验的大作业。
 
-一个利用上 FPGA OL 平台的串口，LED 等硬件的小 LC-3 CPU。优点是代码比较精简，整体 CPU 代码不超过 200 行，缺点是现在回过头来看这也只是个 「CPU 模拟器」 罢了，没有数据通路，也没有中断，特权级这些机制，单纯的多周期状态机莽出来的。[GitHub 链接](https://github.com/liuly0322/USTC-CS-COURSE-HW/blob/main/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E5%AE%9E%E9%AA%8C/labS/src/top.v)。
+一个利用上 FPGA OL 平台的串口，LED 等硬件的小 LC-3 CPU。优点是代码比较精简，整体 CPU 代码不超过 200 行，缺点是现在回过头来看这也只是个「CPU 模拟器」罢了，没有数据通路，也没有中断，特权级这些机制，单纯的多周期状态机莽出来的。[GitHub 链接](https://github.com/liuly0322/USTC-CS-COURSE-HW/blob/main/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E5%AE%9E%E9%AA%8C/labS/src/top.v)。
 
 ![](./images/digital-lab.png)
 
@@ -95,13 +95,13 @@ USTC 数字电路实验和计组会用。
 
 > No one who isn't already a seasoned developer with years of experience in several languages and environments should even be considering OS Dev yet. A decade of programming, including a few years of low-level coding in assembly language and/or a systems language such as C, is pretty much the minimum necessary to even understand the topic well enough to work in it.
 
-从零开始写一个操作系统确实 「野心」 太大，最后我们小组在 [rCore](https://rcore-os.cn/rCore-Tutorial-Book-v3/) 的基础上做了点融合，进行了一个 Rust 语言实现微内核基本 IPC + 用户级线程模型的探索。[项目链接](https://github.com/OSH-2022/x-realism)。
+从零开始写一个操作系统确实「野心」太大，最后我们小组在 [rCore](https://rcore-os.cn/rCore-Tutorial-Book-v3/) 的基础上做了点融合，进行了一个 Rust 语言实现微内核基本 IPC + 用户级线程模型的探索。[项目链接](https://github.com/OSH-2022/x-realism)。
 
 ## 10. 基金情绪分析与预测
 
 这是我学习面向交叉学科的 Python 程序设计课程的大作业，与黄瑞轩、刘阳同学共同完成。
 
-> 这个项目的背景是，随着支付宝、东方财富网购买基金功能的完善，越来越多的大学生加入了炒基金的行列。和传统炒股、炒基金模式不同的是，现在购买基金的 APP 往往提供 “评论区” 功能，用户可以发帖、回帖、分享自己的见解。这就给我们提供了基金相关的舆论信息，有了进行情感走势与基金净值走势的相关检验及长期走势的回归预报的可能。
+> 这个项目的背景是，随着支付宝、东方财富网购买基金功能的完善，越来越多的大学生加入了炒基金的行列。和传统炒股、炒基金模式不同的是，现在购买基金的 APP 往往提供“评论区”功能，用户可以发帖、回帖、分享自己的见解。这就给我们提供了基金相关的舆论信息，有了进行情感走势与基金净值走势的相关检验及长期走势的回归预报的可能。
 
 本项目综合利用爬虫、情感分析、机器学习以及 pyqt 等图形库技术，对东方财富网基金吧内舆论进行情感走势与基金净值走势的相关检验，并进行长期走势的回归预报，将成果通过图形界面展示。
 
@@ -160,3 +160,24 @@ _顺便安利一下「蒜」(Lycoris Recoil)_
 [demo 网页](https://liuly.moe/sysyf_compiler_codegen_opt/)。[GitHub 链接](https://github.com/liuly0322/sysyf_compiler_codegen_opt)。
 
 ![](images/compiler.png)
+
+## 13. 教师管理系统
+
+数据库课设，喜闻乐见的管理系统，[GitHub 链接](https://github.com/liuly0322/teacher-management-system)。
+
+算是 Node.js 全栈开发的一个 demo，用到了 Prisma ORM 进行数据库的访问，Nuxt 框架则提供了前端获取后端 api 接口类型（然后爽做 TypeScript 类型体操）等能力。
+
+## 14. QQ 机器人相关
+
+作为重度 QQ 用户，一直对 QQ 机器人很感兴趣。现在 QQ 官方并不鼓励第三方机器人的使用，下面提到的项目仅供参考。
+
+- [L-Plugin](https://github.com/liuly0322/l-plugin)。起源是给一个基于 icqq 的原神机器人做的插件，支持了一些占卜/运行代码之类的功能。后来 icqq 寄了，原来的原神机器人也转到 [TimeRainStarSky/Yunzai](https://github.com/TimeRainStarSky/Yunzai) 维护了。
+- [QQAutoGUISender](https://github.com/liuly0322/QQAutoGUISender)。一个网页端的匿名信息发送。后端需要在 Linux 桌面环境运行，因为是用 pyautogui 模拟鼠标点击实现的。
+
+> 主流的 QQ bot 生态还是以 OneBot API 为主，可以理解为 OneBot 是一个跨聊天平台的机器人标准，只要对某个平台有了 OneBot 的实现就可以接入其丰富的生态。以前的 QQ bot 对它的实现以 icqq，go-cqhttp 为主，现在的 QQ bot 实现可以参考：[这个 issue](https://github.com/Mrs4s/go-cqhttp/issues/2471) 和 [LiteLoaderQQNT-OneBotApi](https://github.com/linyuchen/LiteLoaderQQNT-OneBotApi)。
+
+## 15. Bilibili 会员购漫展信息收集
+
+Bilibili 并不支持漫展信息的按时间排序，所以我们来造个轮子吧！
+
+[网页链接](https://liuly.moe/BilibiliAnimationExhibitionInformationCollection/)，[数据](https://github.com/liuly0322/BilibiliAnimationExhibitionInformationCollection/tree/gh-pages) 是 [GitHub 仓库](https://github.com/liuly0322/BilibiliAnimationExhibitionInformationCollection/) 每天自动运行 GitHub Actions 爬出，存放到 gh-pages 分支的。
