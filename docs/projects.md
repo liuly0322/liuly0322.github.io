@@ -165,6 +165,8 @@ _顺便安利一下「蒜」(Lycoris Recoil)_
 
 数据库课设，喜闻乐见的管理系统，[GitHub 链接](https://github.com/liuly0322/teacher-management-system)。
 
+![](images/teacher-management.png)
+
 算是 Node.js 全栈开发的一个 demo，用到了 Prisma ORM 进行数据库的访问，Nuxt 框架则提供了前端获取后端 api 接口类型（然后爽做 TypeScript 类型体操）等能力。
 
 ## 14. QQ 机器人相关
@@ -180,4 +182,12 @@ _顺便安利一下「蒜」(Lycoris Recoil)_
 
 Bilibili 并不支持漫展信息的按时间排序，所以我们来造个轮子吧！
 
+![](images/yuki.png)
+
+复刻了一下 Bilibili 的页面。
+
 [网页链接](https://liuly.moe/BilibiliAnimationExhibitionInformationCollection/)，[数据](https://github.com/liuly0322/BilibiliAnimationExhibitionInformationCollection/tree/gh-pages) 是 [GitHub 仓库](https://github.com/liuly0322/BilibiliAnimationExhibitionInformationCollection/) 每天自动运行 GitHub Actions 爬出，存放到 gh-pages 分支的。
+
+## 16. APlayer-ts
+
+在造博客轮子的时候想优化打包速度，于是改了一下原来的 [APlayer](https://github.com/DIYgod/APlayer)。去除了多余的依赖；对某些功能进行了 opt-in 的 Tree-Shaking API 改写；增加了 TypeScript 类型声明。[仓库链接](https://github.com/liuly0322/aplayer-ts)。看到最后打包产物比一开始小了一半还是挺爽的，然后开始沉迷 rollup、esbuild、terser。。。
