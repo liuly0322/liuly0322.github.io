@@ -19,5 +19,4 @@ USTC 20 级本科少年班学院，计算机科学与技术专业在读
 爱好 System/PL/Security 及其他任何 CS 相关~
 
 - GitHub: [liuly0322](https://github.com/liuly0322)
-- Telegram 频道: [liuly_home](https://t.me/liuly_home)
 - 博客：[blog.liuly.moe](https://blog.liuly.moe)
