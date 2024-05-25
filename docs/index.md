@@ -25,10 +25,10 @@ USTC 20 级本科少年班学院，计算机科学与技术专业在读。
 import { generateCounterImage, fetchBusuanziCounter } from 'moe-counter-busuanzi'
 import { onMounted } from 'vue'
 
-onMounted(() => {
-    fetchBusuanziCounter().then((res) => {
-        document.getElementById('counter').innerHTML = generateCounterImage(res.page_pv);
-    });
+onMounted(async () => {
+  const busuanziResult = await fetchBusuanziCounter();
+  const counterSVGString = generateCounterImage(busuanziResult.page_pv);
+  document.getElementById("counter").innerHTML = counterSVGString;
 })
 </script>
 
