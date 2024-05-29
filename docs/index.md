@@ -27,7 +27,7 @@ import { onMounted } from 'vue'
 
 onMounted(async () => {
   const busuanziResult = await fetchBusuanziCounter();
-  const counterSVGString = generateCounterImage(busuanziResult.page_pv);
+  const counterSVGString = generateCounterImage(busuanziResult.page_pv, { length: 5 });
   document.getElementById("counter").innerHTML = counterSVGString;
 })
 </script>
