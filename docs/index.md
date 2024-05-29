@@ -23,11 +23,12 @@ USTC 20 级本科少年班学院，计算机科学与技术专业在读。
 
 <script setup>
 import { generateCounterImage, fetchBusuanziCounter } from 'moe-counter-busuanzi'
+import { moebooruEcchiImages } from 'moe-counter-busuanzi/dist/themes/mbh.js'
 import { onMounted } from 'vue'
 
 onMounted(async () => {
-  const busuanziResult = await fetchBusuanziCounter();
-  const counterSVGString = generateCounterImage(busuanziResult.page_pv, { length: 5 });
+  const pv = (await fetchBusuanziCounter()).page_pv;
+  const counterSVGString = generateCounterImage(pv, 5, false, moebooruEcchiImages);
   document.getElementById("counter").innerHTML = counterSVGString;
 })
 </script>

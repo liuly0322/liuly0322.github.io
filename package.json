@@ -8,7 +8,7 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "moe-counter-busuanzi": "^1.1.0",
+    "moe-counter-busuanzi": "^2.0.0",
     "sakana-widget": "^2.7.0",
     "vite": "^5.2.11",
     "vitepress": "^1.2.2",
