@@ -8,10 +8,9 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "moe-counter-busuanzi": "^2.0.0",
-    "sakana-widget": "^2.7.0",
-    "vite": "^5.2.11",
-    "vitepress": "^1.2.2",
-    "vue": "^3.4.27"
+    "moe-counter-busuanzi": "^2.0.1",
+    "vite": "^5.3.5",
+    "vitepress": "^1.3.1",
+    "vue": "^3.4.34"
   }
 }
