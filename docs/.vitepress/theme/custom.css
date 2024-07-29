@@ -2,28 +2,34 @@
   word-wrap: break-word;
 }
 
-#yuki {
-  width: 0;
+body::after {
+  content: '';
   position: fixed;
   right: 0;
   bottom: 0;
   z-index: 20;
+  width: 0;
+  background: url('/yuki.png');
+  background-size: cover;
 }
 
 @media screen and (min-width: 992px) {
-  #yuki {
+  body::after {
     width: 200px;
+    height: 211px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
-  #yuki {
+  body::after {
     width: 150px;
+    height: 158px;
   }
 }
 
 @media screen and (max-width: 767.98px) {
-  #yuki {
+  body::after {
     width: 80px;
+    height: 84px;
   }
 }
