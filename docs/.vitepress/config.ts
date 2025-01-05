@@ -8,8 +8,8 @@ import { nav } from './utils/nav'
  */
 
 const config = defineConfig({
-  title: 'liuly 的个人主页',
-  description: 'liuly 的个人主页',
+  title: 'undef_baka 的个人主页',
+  description: 'undef_baka 的个人主页',
   lang: 'zh-CN',
   lastUpdated: true,
   themeConfig: {
