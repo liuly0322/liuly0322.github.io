@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      moe-counter-busuanzi:
-        specifier: ^2.0.1
-        version: 2.0.1
       vite:
         specifier: ^5.3.5
         version: 5.3.5
@@ -522,9 +519,6 @@ packages:
 
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
-
-  moe-counter-busuanzi@2.0.1:
-    resolution: {integrity: sha512-XvwUaQPWrt8oxxNBkKb61SiI6mm3aF924sz1Iv05KdqPFBOFLsc69MvTt+xcAj+QWRCqKhLjoDdx6DwseaWUDw==}
 
   nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
@@ -1109,8 +1103,6 @@ snapshots:
   minisearch@7.1.0: {}
 
   mitt@3.0.1: {}
-
-  moe-counter-busuanzi@2.0.1: {}
 
   nanoid@3.3.7: {}
 

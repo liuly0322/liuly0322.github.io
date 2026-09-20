@@ -5,13 +5,8 @@ export const nav = [
     link: '/',
   },
   {
-    text: '企划',
-    activeMatch: '/projects',
-    link: '/projects',
-  },
-  {
-    text: '经历',
-    activeMatch: '/logs',
-    link: '/logs',
+    text: '归档',
+    activeMatch: '/(archive|projects|logs)',
+    link: '/archive',
   },
 ]

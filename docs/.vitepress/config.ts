@@ -1,6 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { nav } from './utils/nav'
 
+const buildTime = new Date()
+
 /**
  * 参考：https://vitepress.vuejs.org/config/app-configs.html
  *
@@ -9,9 +11,25 @@ import { nav } from './utils/nav'
 
 const config = defineConfig({
   title: 'undef_baka 的个人主页',
-  description: 'undef_baka 的个人主页',
+  description: '刘良宇的个人主页、简历与历史归档。',
   lang: 'zh-CN',
   lastUpdated: true,
+  markdown: {
+    externalLinks: { target: '_blank', rel: 'noopener noreferrer' },
+  },
+  transformPageData(pageData) {
+    if (pageData.relativePath === 'index.md') {
+      pageData.frontmatter.buildTime = {
+        iso: buildTime.toISOString(),
+        text: new Intl.DateTimeFormat('sv-SE', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric', month: '2-digit', day: '2-digit',
+          hour: '2-digit', minute: '2-digit',
+          hour12: false,
+        }).format(buildTime),
+      }
+    }
+  },
   themeConfig: {
     socialLinks: [
       {

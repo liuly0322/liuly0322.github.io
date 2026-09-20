@@ -1,37 +1,35 @@
-<div style="display: flex; line-height: initial">
-    <div style="max-width: 100px">
-        <img style="border-radius:50%" src="https://q2.qlogo.cn/headimg_dl?dst_uin=453026205&spec=100">
+---
+layout: page
+title: 刘良宇
+description: 刘良宇的个人主页。2024 年起在中国科学技术大学攻读硕士研究生，附个人简历与博客入口。
+---
+
+<main class="profile">
+  <header class="profile-intro">
+    <p class="profile-handle">liuly0322 / undef_baka</p>
+    <h1>刘良宇</h1>
+    <p class="profile-bio">2024 年起在中国科学技术大学攻读硕士研究生。</p>
+  </header>
+
+  <div class="profile-actions">
+    <a class="cv-link" href="/cv/cv-202601.pdf" target="_blank" rel="noopener">查看 CV <span aria-hidden="true">↗</span></a>
+    <span class="cv-date">PDF · <time datetime="2026-01">2026 年 1 月版</time></span>
+  </div>
+
+  <a class="profile-about" href="https://blog.liuly.moe/about" target="_blank" rel="noopener noreferrer">详细了解我 <span aria-hidden="true">→</span></a>
+
+  <footer class="profile-footer">
+    <div class="profile-contact" aria-label="联系方式">
+      <a href="mailto:lly@mail.ustc.edu.cn">lly@mail.ustc.edu.cn</a>
+      <a href="https://github.com/liuly0322" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </div>
-    <div style="padding-left: 2rem; display: flex; flex-direction: column">
-        <div style="font-size: 1.85rem; font-weight: 600">刘良宇</div>
-        <div style="margin-bottom: 0.5rem">Student at USTC</div>
-        <div style="font-family: Courier New,Courier,monospace;">
-            <div>me@liuly.moe</div>
-            <div>qq: 453026205</div>
-        </div>
-    </div>
-</div>
-
-## 简介
-
-USTC 20 级本科少年班学院，计算机科学与技术专业在读。
-
-爱好 System/PL/Security 及其他任何 CS 相关~
-
-- GitHub: [liuly0322](https://github.com/liuly0322)
-- 博客：[blog.liuly.moe](https://blog.liuly.moe)
+    <a class="profile-archive" href="/archive.html">历史归档 <span aria-hidden="true">→</span></a>
+  </footer>
+  <p class="profile-updated">Updated · <time :datetime="frontmatter.buildTime.iso">{{ frontmatter.buildTime.text }}</time> (UTC+8)</p>
+</main>
 
 <script setup>
-import { generateCounterImage, fetchBusuanziCounter } from 'moe-counter-busuanzi'
-import { moebooruEcchiImages } from 'moe-counter-busuanzi/dist/themes/mbh.js'
-import { onMounted } from 'vue'
+import { useData } from 'vitepress'
 
-onMounted(async () => {
-  const pv = (await fetchBusuanziCounter()).page_pv;
-  const counterSVGString = generateCounterImage(pv, 5, false, moebooruEcchiImages);
-  document.getElementById("counter").innerHTML = counterSVGString;
-})
+const { frontmatter } = useData()
 </script>
-
-<div id="counter">
-</div>
