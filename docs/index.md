@@ -1,12 +1,12 @@
 ---
 layout: page
-title: 刘良宇
-description: 刘良宇的个人主页。2024 年起在中国科学技术大学攻读硕士研究生，附个人简历与博客入口。
+title: 刘良宇的个人主页
+titleTemplate: false
+description: 刘良宇的个人主页
 ---
 
 <main class="profile">
   <header class="profile-intro">
-    <p class="profile-handle">liuly0322 / undef_baka</p>
     <h1>刘良宇</h1>
     <p class="profile-bio">2024 年起在中国科学技术大学攻读硕士研究生。</p>
   </header>

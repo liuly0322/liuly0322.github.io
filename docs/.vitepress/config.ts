@@ -10,8 +10,8 @@ const buildTime = new Date()
  */
 
 const config = defineConfig({
-  title: 'undef_baka 的个人主页',
-  description: '刘良宇的个人主页、简历与历史归档。',
+  title: '刘良宇的个人主页',
+  description: '刘良宇的个人主页',
   lang: 'zh-CN',
   lastUpdated: true,
   markdown: {
