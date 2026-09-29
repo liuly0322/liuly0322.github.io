@@ -1,4 +1,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
+import { minify } from '@node-minify/core'
+import { htmlMinifier } from '@node-minify/html-minifier'
 import MarkdownIt from 'markdown-it'
 
 // Resolve paths from this file, so the build also works outside the project root.
@@ -51,10 +54,10 @@ const pages = [
 await rm(path('dist/'), { recursive: true, force: true })
 await mkdir(path('dist/'), { recursive: true })
 await cp(path('public/'), path('dist/'), { recursive: true })
-for (const name of ['base.css', 'home.css', 'article.css']) {
-  await write(name, await read(`src/${name}`))
-}
-await write('index.html', await read('src/index.html'))
+const [baseCss, homeCss, articleCss] = await Promise.all(
+  ['base.css', 'home.css', 'article.css'].map((name) => read(`src/${name}`)),
+)
+await write('index.html', (await read('src/index.html')).replace('{{styles}}', `${baseCss}\n${homeCss}`))
 for (const page of pages) {
   const body = renderArticle(await read(`src/${page.name}.md`), page.name !== 'archive')
   await write(`${page.name}.html`, `<!doctype html>
@@ -64,8 +67,7 @@ for (const page of pages) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escape(page.description)}">
   <title>${escape(page.title)} | 刘良宇的个人主页</title>
-  <link rel="stylesheet" href="/base.css">
-  <link rel="stylesheet" href="/article.css">
+  <style>${baseCss}\n${articleCss}</style>
 </head>
 <body>
   <div class="article-shell">
@@ -76,6 +78,25 @@ for (const page of pages) {
 </html>
 `)
 }
+// Compress complete pages after rendering, including their inline CSS.
+const htmlFiles = ['index', ...pages.map((page) => page.name)]
+  .map((name) => fileURLToPath(path(`dist/${name}.html`)))
+await minify({
+  compressor: htmlMinifier,
+  input: htmlFiles,
+  output: htmlFiles,
+  options: {
+    collapseInlineTagWhitespace: false,
+    removeOptionalTags: false,
+    removeEmptyAttributes: false,
+    minifyJS: false,
+    continueOnMinifyError: false,
+    minifyCSS: {
+      // Keep media queries compatible with browsers predating range syntax.
+      targets: { chrome: 90 << 16, firefox: 90 << 16, safari: 15 << 16 },
+    },
+  },
+})
 await write('CNAME', 'liuly.moe\n')
 await write('.nojekyll', '')
 console.log('Built homepage, 3 archive pages, and static assets in dist/.')

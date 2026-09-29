@@ -9,5 +9,9 @@
   "license": "ISC",
   "dependencies": {
     "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@node-minify/core": "^11.0.0",
+    "@node-minify/html-minifier": "^11.0.0"
   }
 }

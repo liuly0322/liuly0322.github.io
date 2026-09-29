@@ -13,11 +13,11 @@ pnpm serve
 ```
 
 Preview at http://localhost:8000. After editing source files, run `pnpm build` again.
-The build uses only markdown-it and Node's standard library; output has no client-side JavaScript.
+The build renders Markdown with markdown-it, inlines each page's CSS, then compresses HTML and inline CSS with node-minify. Output has no client-side JavaScript or separate stylesheet requests.
 
 ## Content
 
-- `src/index.html`, `src/home.css`: homepage and its styles. Build-time placeholders are filled in Asia/Shanghai time.
+- `src/index.html`, `src/home.css`: homepage and its styles. The `{{styles}}` placeholder is replaced with the shared and homepage CSS at build time.
 - `src/archive.md`, `src/projects.md`, `src/logs.md`: historical archive, without frontmatter. Titles and descriptions are configured in `scripts/build.mjs`.
 - `src/base.css`, `src/article.css`: shared colors, system light/dark mode, and archive typography.
 - `public/cv/`: dated CV PDFs. Update the homepage link when adding a new CV.
