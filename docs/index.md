@@ -8,12 +8,12 @@ description: 刘良宇的个人主页
 <main class="profile">
   <header class="profile-intro">
     <h1>刘良宇</h1>
-    <p class="profile-bio">2024 年起在中国科学技术大学攻读硕士研究生。</p>
+    <p class="profile-bio">中国科学技术大学｜计算机硕士（2027 届）</p>
   </header>
 
   <div class="profile-actions">
-    <a class="cv-link" href="/cv/cv-202601.pdf" target="_blank" rel="noopener">查看 CV <span aria-hidden="true">↗</span></a>
-    <span class="cv-date">PDF · <time datetime="2026-01">2026 年 1 月版</time></span>
+    <a class="cv-link" href="/cv/cv-202601.pdf" target="_blank" rel="noopener">简历</a>
+    <span class="cv-date"><time datetime="2026-01">更新于 2026 年 1 月</time></span>
   </div>
 
   <a class="profile-about" href="https://blog.liuly.moe/about" target="_blank" rel="noopener noreferrer">详细了解我 <span aria-hidden="true">→</span></a>
@@ -23,7 +23,6 @@ description: 刘良宇的个人主页
       <a href="mailto:lly@mail.ustc.edu.cn">lly@mail.ustc.edu.cn</a>
       <a href="https://github.com/liuly0322" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </div>
-    <a class="profile-archive" href="/archive.html">历史归档 <span aria-hidden="true">→</span></a>
   </footer>
   <p class="profile-updated">Updated · <time :datetime="frontmatter.buildTime.iso">{{ frontmatter.buildTime.text }}</time> (UTC+8)</p>
 </main>
