@@ -12,7 +12,6 @@ description: 刘良宇的个人主页
       中国科学技术大学 · 计算机硕士（2027 届）
     </p>
   </header>
-
   <nav class="profile-links" aria-label="个人链接">
     <a
       href="/cv/cv-202601.pdf"
@@ -21,7 +20,6 @@ description: 刘良宇的个人主页
     >
       简历
     </a>
-
     <a
       href="https://blog.liuly.moe/about"
       target="_blank"
@@ -30,13 +28,11 @@ description: 刘良宇的个人主页
       关于我
     </a>
   </nav>
-
   <footer class="profile-footer">
     <div class="profile-contact" aria-label="联系方式">
       <a href="mailto:lly@mail.ustc.edu.cn">
         lly@mail.ustc.edu.cn
       </a>
-
       <a
         href="https://github.com/liuly0322"
         target="_blank"
@@ -45,7 +41,6 @@ description: 刘良宇的个人主页
         GitHub
       </a>
     </div>
-
     <p class="profile-updated">
       Updated ·
       <time :datetime="frontmatter.buildTime.iso">
