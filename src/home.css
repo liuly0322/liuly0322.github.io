@@ -1,68 +1,3 @@
----
-layout: page
-title: 刘良宇的个人主页
-titleTemplate: false
-description: 刘良宇的个人主页
----
-
-<main class="profile">
-  <header class="profile-intro">
-    <h1>刘良宇</h1>
-    <p class="profile-bio">
-      中国科学技术大学 · 计算机硕士（2027 届）
-    </p>
-  </header>
-
-  <nav class="profile-links" aria-label="个人链接">
-    <a
-      href="/cv/cv-202601.pdf"
-      target="_blank"
-      rel="noopener"
-    >
-      简历
-    </a>
-
-    <a
-      href="https://blog.liuly.moe/about"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      关于我
-    </a>
-  </nav>
-
-  <footer class="profile-footer">
-    <div class="profile-contact" aria-label="联系方式">
-      <a href="mailto:lly@mail.ustc.edu.cn">
-        lly@mail.ustc.edu.cn
-      </a>
-
-      <a
-        href="https://github.com/liuly0322"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub
-      </a>
-    </div>
-
-    <p class="profile-updated">
-      Updated ·
-      <time :datetime="frontmatter.buildTime.iso">
-        {{ frontmatter.buildTime.text }}
-      </time>
-      (UTC+8)
-    </p>
-  </footer>
-</main>
-
-<script setup>
-import { useData } from 'vitepress'
-
-const { frontmatter } = useData()
-</script>
-
-<style scoped>
 .profile {
   width: min(860px, calc(100% - 48px));
   margin: 0 auto;
@@ -175,4 +110,3 @@ const { frontmatter } = useData()
     margin-top: 80px;
   }
 }
-</style>
