@@ -54,13 +54,7 @@ await cp(path('public/'), path('dist/'), { recursive: true })
 for (const name of ['base.css', 'home.css', 'article.css']) {
   await write(name, await read(`src/${name}`))
 }
-const now = new Date()
-const buildTime = new Intl.DateTimeFormat('sv-SE', {
-  timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
-  hour: '2-digit', minute: '2-digit', hour12: false,
-}).format(now)
-await write('index.html', (await read('src/index.html'))
-  .replace('{{BUILD_ISO}}', now.toISOString()).replace('{{BUILD_TEXT}}', buildTime))
+await write('index.html', await read('src/index.html'))
 for (const page of pages) {
   const body = renderArticle(await read(`src/${page.name}.md`), page.name !== 'archive')
   await write(`${page.name}.html`, `<!doctype html>

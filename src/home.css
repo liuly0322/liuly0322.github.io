@@ -27,7 +27,7 @@
 .profile-links {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 24px;
   margin-top: 46px;
 }
 
@@ -35,18 +35,32 @@
   color: var(--vp-c-text-1);
   font-size: 1.05rem;
   font-weight: 500;
-  text-decoration: none;
-  text-underline-offset: 5px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--vp-c-text-3);
+  text-underline-offset: 4px;
   transition: color 0.15s ease;
 }
 
-.profile-links a:first-child {
+.profile-cv a {
   font-weight: 600;
 }
 
 .profile-links a:hover {
   color: var(--vp-c-brand-1);
-  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+.profile-cv {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.profile-cv-date {
+  color: var(--vp-c-text-3);
+  font-size: 0.82rem;
 }
 
 /* Footer */
@@ -76,18 +90,11 @@
   text-decoration: underline;
 }
 
-.profile-updated {
-  margin: 32px 0 0;
-  color: var(--vp-c-text-3);
-  font-size: 0.82rem;
-  line-height: 1.5;
-}
-
 /* Mobile */
 
 @media (max-width: 640px) {
   .profile {
-    width: min(100% - 40px, 860px);
+    width: calc(100% - 48px);
     padding-top: 88px;
     padding-bottom: 56px;
   }
