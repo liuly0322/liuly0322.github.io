@@ -1,5 +1,6 @@
 ---
 layout: page
+navbar: false
 title: 刘良宇的个人主页
 titleTemplate: false
 description: 刘良宇的个人主页
