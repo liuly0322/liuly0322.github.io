@@ -94,32 +94,37 @@ button.primary[disabled]{opacity:.55;cursor:progress}
 }
 .empty strong{display:block;color:var(--ink-2);font-size:14px;font-weight:600;margin-bottom:6px}
 
-/* ---- token 额度 hero ---- */
-.hero{display:flex;flex-direction:column;gap:14px}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.big{font-family:var(--mono);font-size:clamp(34px,8.5vw,52px);font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.05;margin-top:4px}
-.big .u{font-size:.36em;font-weight:500;color:var(--ink-3);margin-left:5px;letter-spacing:0}
-.pct{font-family:var(--mono);font-size:clamp(22px,5vw,30px);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.pct[data-tone=warn]{color:var(--warn)}
-.pct[data-tone=bad]{color:var(--bad)}
-.meter{height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line)}
-.meter > i{display:block;height:100%;border-radius:999px;background:var(--accent);width:0;transition:width .5s cubic-bezier(.2,.7,.3,1)}
-.meter[data-tone=warn] > i{background:var(--warn)}
-.meter[data-tone=bad] > i{background:var(--bad)}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-top:2px}
+/* ---- 额度窗口（主角）---- */
+.wins{display:flex;flex-direction:column;gap:17px;margin-top:14px}
+.win-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.win-label{font-size:13.5px;font-weight:600}
+.win-state{font-size:11px;font-family:var(--mono);padding:2px 8px;border-radius:999px;margin-left:9px;vertical-align:1px}
+.win[data-tone=ok] .win-state{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
+.win[data-tone=warn] .win-state{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.win[data-tone=bad] .win-state{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.win-pct{font-family:var(--mono);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.win[data-tone=warn] .win-pct{color:var(--warn)}
+.win[data-tone=bad] .win-pct{color:var(--bad)}
+.win-bar{height:9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;margin:9px 0 7px}
+.win-bar > i{display:block;height:100%;border-radius:999px;background:var(--accent);transition:width .5s cubic-bezier(.2,.7,.3,1)}
+.win[data-tone=warn] .win-bar > i{background:var(--warn)}
+.win[data-tone=bad] .win-bar > i{background:var(--bad)}
+.win-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2)}
+.win-foot b{font-family:var(--mono);color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.win-reset{font-family:var(--mono);font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.scope{font-size:11px;font-family:var(--mono);color:var(--ink-3);margin-left:7px}
+
+/* ---- 今日 token ---- */
+.big-sm{font-family:var(--mono);font-size:clamp(24px,6vw,30px);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.big-sm .u{font-size:.5em;font-weight:500;color:var(--ink-3);margin-left:3px;letter-spacing:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .split .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-family:var(--mono)}
 .split .v{font-family:var(--mono);font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;margin:3px 0 6px}
+.split .v small{font-size:11px;font-weight:400;color:var(--ink-3);font-family:var(--sans)}
 .split .bar{height:5px;border-radius:999px;background:var(--surface-2);overflow:hidden}
 .split .bar i{display:block;height:100%;border-radius:999px;transition:width .5s cubic-bezier(.2,.7,.3,1)}
 .split > div:nth-child(1) .bar i{background:var(--accent)}
 .split > div:nth-child(2) .bar i{background:var(--ink-3)}
-.cost{border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
-.cost summary{cursor:pointer;font-size:12px;color:var(--ink-3);font-family:var(--mono);letter-spacing:.05em;list-style:none}
-.cost summary::-webkit-details-marker{display:none}
-.cost summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
-.cost[open] summary::before{transform:rotate(90deg)}
-.cost p{margin:8px 0 0;font-size:12.5px;color:var(--ink-2)}
-.cost b{color:var(--ink);font-family:var(--mono);font-variant-numeric:tabular-nums}
 .meta{font-size:12.5px;color:var(--ink-2)}
 .meta b{color:var(--ink);font-weight:600;font-family:var(--mono);font-variant-numeric:tabular-nums}
 
@@ -179,7 +184,6 @@ td.num{font-family:var(--mono)}
   <header>
     <p class="eyebrow">USTC · LiteLLM 代理</p>
     <h1>用量面板</h1>
-    <p class="lede">输入 key 后查询每日 token 用量、额度进度与花费。key 保存在浏览器本地。</p>
   </header>
 
   <section class="card">
@@ -194,28 +198,37 @@ td.num{font-family:var(--mono)}
       <button id="clear" type="button">清除</button>
     </div>
     <p id="status" class="status" hidden></p>
-    <p class="note">共用设备上请勿勾选「记住」。</p>
   </section>
 
   <div id="empty" class="empty">
     <strong>还没有查询</strong>
-    查询后会显示：今日 token 用量与 1 亿额度进度、输入与输出拆分、每日用量图表、逐日明细。
+    查询后会显示：3 小时 / 12 小时 / 24 小时额度窗口的消耗进度与重置倒计时、每日 token 用量、逐日明细。
   </div>
 
   <section id="results" hidden style="display:flex;flex-direction:column;gap:20px">
-    <!-- token 额度（主角） -->
-    <div class="card hero">
+    <div class="card">
       <div class="hero-top">
         <div>
-          <p class="eyebrow">今日 · 输入 + 输出</p>
-          <div class="big"><span id="tokToday">—</span></div>
+          <h2>额度窗口</h2>
+          <p class="sub" id="winSub">—</p>
+        </div>
+        <p class="meta" id="nextReset" style="margin:0;text-align:right"></p>
+      </div>
+      <div class="wins" id="wins"></div>
+    </div>
+
+    <!-- 今日 token -->
+    <div class="card">
+      <div class="hero-top">
+        <div>
+          <h2>今日 token</h2>
+          <p class="sub">输入 + 输出</p>
         </div>
         <div style="text-align:right">
-          <div class="pct" id="tokPct">—</div>
-          <p class="meta" id="quotaMeta" style="margin:2px 0 0"></p>
+          <div class="big-sm" id="tokToday">—</div>
+          <p class="meta" id="tokMeta" style="margin:2px 0 0"></p>
         </div>
       </div>
-      <div class="meter" id="tokMeter"><i></i></div>
       <div class="split">
         <div>
           <div class="k">输入</div>
@@ -228,10 +241,7 @@ td.num{font-family:var(--mono)}
           <div class="bar"><i id="outBar" style="width:0"></i></div>
         </div>
       </div>
-      <details class="cost">
-        <summary>花费</summary>
-        <p class="meta" id="costLine"></p>
-      </details>
+      <p class="meta" id="cacheLine" style="margin-top:14px"></p>
     </div>
 
     <!-- 指标 -->
@@ -242,7 +252,7 @@ td.num{font-family:var(--mono)}
       <div class="chart-head">
         <div>
           <h2>每日 token</h2>
-          <p class="sub">输入 + 输出；虚线为每日额度</p>
+          <p class="sub">输入 + 输出</p>
         </div>
         <div class="ranges" id="ranges">
           <button type="button" data-days="7" aria-pressed="false">7 天</button>
@@ -276,7 +286,7 @@ td.num{font-family:var(--mono)}
         <table>
           <thead><tr>
             <th scope="col">日期</th><th scope="col">输入 tok</th><th scope="col">输出 tok</th><th scope="col">合计</th>
-            <th scope="col">额度</th><th scope="col">成功</th><th scope="col">失败</th><th scope="col">花费</th>
+            <th scope="col">缓存命中</th><th scope="col">成功</th><th scope="col">失败</th><th scope="col">花费</th>
           </tr></thead>
           <tbody id="tbody"></tbody>
           <tfoot id="tfoot"></tfoot>
@@ -297,7 +307,6 @@ td.num{font-family:var(--mono)}
 (function(){
   "use strict";
   var API = "https://api.llm.ustc.edu.cn";
-  var QUOTA = 1e8; /* 服务方每日 token 上限（非接口返回值，估测值） */
   var LS = "ustc.llm.key";
   var el = function(id){ return document.getElementById(id); };
   var state = { key:"", days:14, rows:[], id:null, lastKey:null, lastUser:null };
@@ -334,7 +343,6 @@ td.num{font-family:var(--mono)}
     if(n>=1e8) return (n/1e8).toFixed(2); if(n>=1e4) return (n/1e4).toFixed(1); return String(Math.round(n));
   }
   function int(n){ return (n==null||!isFinite(n))?"—":Math.round(n).toLocaleString("en-US"); }
-  function ratioStr(n){ return n==null||!isFinite(n)?"—":(n*100).toFixed(1)+"%"; }
   function ymd(d){
     var m=d.getMonth()+1, day=d.getDate();
     return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(day<10?"0":"")+day;
@@ -420,48 +428,105 @@ td.num{font-family:var(--mono)}
   function render(k,u){
     el("empty").hidden = true;
     el("results").hidden = false;
-    renderQuota();
+    renderWindows(k,u);
+    renderTokens();
     renderTiles(k,u);
     renderCharts();
     renderTable();
     renderModels(k);
   }
 
-  function renderQuota(){
+  /* 把时长的解析结果统一成毫秒 */
+  function durMs(s){
+    var m=/^\s*(\d+)\s*(ms|s|m|h|d|w)?\s*$/.exec(String(s||""));
+    if(!m) return null;
+    var n=+m[1], u=(m[2]||"d").toLowerCase();
+    return n*({ms:1,s:1e3,m:60e3,h:3600e3,d:86400e3,w:604800e3}[u]||86400e3);
+  }
+  function resetLabel(iso){
+    if(!iso) return "—";
+    var d=new Date(iso);
+    if(isNaN(d.getTime())) return String(iso);
+    var now=new Date(), diff=d-now;
+    var hh=("0"+d.getHours()).slice(-2), mm=("0"+d.getMinutes()).slice(-2);
+    var t = d.toDateString()===now.toDateString() ? (hh+":"+mm) : ((d.getMonth()+1)+"/"+d.getDate()+" "+hh+":"+mm);
+    if(diff<=0) return t+" · 即将重置";
+    var h=Math.floor(diff/3600e3), mi=Math.round((diff%3600e3)/60e3);
+    return t+" · 还有 "+(h>0?h+" 小时 ":"")+mi+" 分";
+  }
+  function renderWindows(k,u){
+    var ki = k && k.info ? k.info : {};
+    var ui = u && u.user_info ? u.user_info : {};
+    var live = ki.budget_limits_usage || {};
+    var wins=[];
+    /* 时长最长者放最下面，短的在上（3h → 12h → 24h） */
+    (ki.budget_limits||[]).forEach(function(b){
+      var d=b.budget_duration||"";
+      var used = live[d] ? +live[d].current_spend : null;
+      wins.push({ label:d||"窗口", scope:"key", max:+b.max_budget, used:used, reset:b.reset_at });
+    });
+    if(ui.max_budget!=null){
+      wins.push({ label: ui.budget_duration||"用户级", scope:"user", max:+ui.max_budget,
+                  used: isFinite(+ui.spend)?+ui.spend:null, reset: ui.budget_reset_at });
+    }
+    wins.sort(function(a,b){ return (durMs(a.label)||0)-(durMs(b.label)||0); });
+
+    if(!wins.length){
+      el("wins").innerHTML='<p class="meta">这个 key 没有配置额度窗口。</p>';
+      el("winSub").textContent="未设上限";
+      el("nextReset").textContent="";
+      return;
+    }
+    el("winSub").textContent = wins.length+" 个窗口叠加，任一用尽即会被限流";
+
+    var nearest=null;
+    el("wins").innerHTML = wins.map(function(w){
+      var pct = (w.max>0 && w.used!=null) ? Math.max(0,Math.min(1,w.used/w.max)) : null;
+      var tone = pct==null?"ok":pct>=0.9?"bad":pct>=0.8?"warn":"ok";
+      var state = pct==null?"—":pct>=1?"已用尽":pct>=0.9?"即将用尽":pct>=0.8?"注意":"正常";
+      var r=new Date(w.reset); if(!isNaN(r.getTime()) && (!nearest || r<nearest)) nearest=r;
+      var left = w.max!=null&&w.used!=null ? Math.max(0,w.max-w.used) : null;
+      return '<div class="win" data-tone="'+tone+'">'+
+        '<div class="win-head">'+
+          '<div><span class="win-label">'+esc(w.label)+'</span>'+
+          (w.scope==="user"?'<span class="scope">用户级</span>':'<span class="scope">key 级</span>')+
+          '<span class="win-state">'+esc(state)+'</span></div>'+
+          '<div class="win-pct">'+(pct==null?"—":(pct*100).toFixed(1)+"%")+'</div>'+
+        '</div>'+
+        '<div class="win-bar"><i style="width:'+(pct==null?0:(pct*100).toFixed(2))+'%"></i></div>'+
+        '<div class="win-foot">'+
+          '<span>已用 <b>'+esc(money(w.used))+'</b> / <b>'+esc(money(w.max))+'</b>'+
+            (left!=null?' · 剩 <b>'+esc(money(left))+'</b>':'')+'</span>'+
+          '<span class="win-reset">'+esc(resetLabel(w.reset))+'</span>'+
+        '</div></div>';
+    }).join("");
+
+    el("nextReset").innerHTML = nearest && !isNaN(nearest.getTime())
+      ? "最近重置<br><b>"+esc(nearest.toLocaleString(undefined,{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}))+"</b>"
+      : "";
+  }
+
+  /* 今日 token（次要） */
+  function renderTokens(){
     var rows=state.rows.slice().sort(function(a,b){ return a.date<b.date?1:a.date>b.date?-1:0; });
     var today=rows.length?rows[0]:null;
     var inTok=today?today.pin:null, outTok=today?today.pout:null;
     var total=(inTok==null||outTok==null)?null:(inTok+outTok);
-    var ratio=(total==null)?null:Math.min(1,total/QUOTA);
     var u=tokUnit(total||0);
-    var nTok = u ? tokNum(total) : (total==null?"—":int(total));
 
-    el("tokToday").innerHTML = esc(nTok) + (u?'<span class="u">'+u+'</span>':'');
-    el("tokPct").textContent = ratio==null?"—":ratioStr(ratio);
-    var mt=el("tokMeter"), bar=mt.querySelector("i");
-    bar.style.width = ratio==null?0:((ratio*100).toFixed(2)+"%");
-    var tone = ratio==null?"ok":ratio>=0.9?"bad":ratio>=0.7?"warn":"ok";
-    mt.setAttribute("data-tone",tone);
-    el("tokPct").setAttribute("data-tone",tone);
-    el("quotaMeta").innerHTML = total==null ? "今天还没有记录"
-      : "额度 <b>"+tok(QUOTA)+"</b> · 剩余 <b>"+tok(Math.max(0,QUOTA-total))+"</b>";
-
-    /* 输入 / 输出拆分，条宽按较大者归一，使两者相对可比 */
+    el("tokToday").innerHTML = esc(u?tokNum(total):(total==null?"—":int(total))) + (u?'<span class="u">'+u+'</span>':'');
     var base=Math.max(inTok||0,outTok||0,1);
-    el("inToday").textContent=tok(inTok);
-    el("outToday").textContent=tok(outTok);
+    var share=(total>0&&inTok!=null)?(inTok/total*100).toFixed(1)+"%":"—";
+    el("inToday").innerHTML = esc(tok(inTok)) + ' <small>占 '+esc(share)+'</small>';
+    el("outToday").textContent = tok(outTok);
     el("inBar").style.width=((inTok||0)/base*100).toFixed(1)+"%";
     el("outBar").style.width=((outTok||0)/base*100).toFixed(1)+"%";
-    var inShare = (total>0 && inTok!=null) ? (inTok/total*100).toFixed(1)+"%" : "—";
-    el("inToday").innerHTML = esc(tok(inTok)) + ' <span style="font-size:11px;font-weight:400;color:var(--ink-3)">占 '+esc(inShare)+'</span>';
 
-    /* 花费 */
-    var ki = state.lastKey && state.lastKey.info ? state.lastKey.info : {};
-    var ui = state.lastUser && state.lastUser.user_info ? state.lastUser.user_info : {};
-    var maxB=+ui.max_budget;
-    var cost = "今天 "+esc(money(today?today.spend:null))+" · key 累计 "+esc(money(+ki.spend));
-    if(isFinite(maxB)&&maxB>0) cost += " · 预算 "+esc(money(+ui.spend))+" / "+esc(money(maxB));
-    el("costLine").innerHTML = cost;
+    var hit = (today && today.pin>0) ? (today.cache/today.pin*100).toFixed(1)+"%" : "—";
+    el("tokMeta").innerHTML = today ? int(today.ok+today.fail)+" 次调用" : "今天还没有记录";
+    el("cacheLine").innerHTML = today
+      ? "缓存命中 <b>"+esc(hit)+"</b> · 今日花费 <b>"+esc(money(today.spend))+"</b>"
+      : "";
   }
 
   function renderTiles(k,u){
@@ -509,7 +574,7 @@ td.num{font-family:var(--mono)}
     var W=plotWidth(host), H=210;
     var padL=58, padR=14, padT=16, padB=30;
     var pw=W-padL-padR, ph=H-padT-padB;
-    var maxV=niceMax(Math.max(QUOTA, Math.max.apply(null,rows.map(function(r){ return r.pin+r.pout; }))));
+    var maxV=niceMax(Math.max.apply(null,rows.map(function(r){ return r.pin+r.pout; })));
     var n=rows.length, slot=pw/n, bw=Math.min(46,slot*0.62);
     var maxIdx=0; rows.forEach(function(r,i){ if((r.pin+r.pout)>(rows[maxIdx].pin+rows[maxIdx].pout)) maxIdx=i; });
     var step=Math.ceil(n/7);
@@ -519,11 +584,6 @@ td.num{font-family:var(--mono)}
       return '<line class="gridline" x1="'+padL+'" x2="'+(padL+pw)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"/>'+
              '<text class="tick" x="'+(padL-8)+'" y="'+(y+3.5).toFixed(1)+'" text-anchor="end">'+esc(tokNum(v))+'</text>';
     }).join("");
-    /* 额度虚线 */
-    var yQ=yOf(QUOTA);
-    var quota = '<line x1="'+padL+'" x2="'+(padL+pw)+'" y1="'+yQ.toFixed(1)+'" y2="'+yQ.toFixed(1)+
-      '" stroke="var(--bad)" stroke-width="1.5" stroke-dasharray="5 4" opacity=".8"/>'+
-      '<text class="tick" x="'+(padL+pw)+'" y="'+(yQ-6).toFixed(1)+'" text-anchor="end" fill="var(--bad)">额度 '+esc(tok(QUOTA))+'</text>';
     var bars="", hits="", labels="";
     rows.forEach(function(r,i){
       var v=r.pin+r.pout;
@@ -531,19 +591,20 @@ td.num{font-family:var(--mono)}
       var h=v<=0?0:Math.max(2,ph*(v/maxV));
       var y=padT+ph-h;
       var on=(i===maxIdx && v>0);
-      var over = v>QUOTA;
-      bars+='<path class="bar" d="'+barPath(x,y,bw,h,4)+'" fill="'+(over?"var(--bad)":"var(--accent)")+'" fill-opacity="'+(on||over?1:0.72)+'"/>';
-      if(on||over) labels+='<text class="tick" x="'+(x+bw/2).toFixed(1)+'" y="'+(Math.min(y,yQ)-7).toFixed(1)+'" text-anchor="middle" fill="var(--ink)" style="font-weight:600">'+esc(tok(v))+'</text>';
+      bars+='<path class="bar" d="'+barPath(x,y,bw,h,4)+'" fill="var(--accent)" fill-opacity="'+(on?1:0.72)+'"/>';
+      if(on) labels+='<text class="tick" x="'+(x+bw/2).toFixed(1)+'" y="'+(y-7).toFixed(1)+'" text-anchor="middle" fill="var(--ink)" style="font-weight:600">'+esc(tok(v))+'</text>';
       if(i%step===0 || i===n-1)
         labels+='<text class="tick" x="'+(x+bw/2).toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle">'+esc(md(r.date))+'</text>';
       hits+='<rect class="hit" x="'+(padL+slot*i).toFixed(1)+'" y="'+padT+'" width="'+slot.toFixed(1)+'" height="'+ph+'" fill="transparent" data-i="'+i+'"/>';
     });
     host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="每日 token">'+
-      grid+quota+bars+labels+hits+'</svg><div class="tip" id="tokTip"></div>';
+      grid+bars+labels+hits+'</svg><div class="tip" id="tokTip"></div>';
     wireTip(host,"tokTip",function(i){
       var r=rows[i], v=r.pin+r.pout;
-      return '<b>'+esc(r.date)+'</b><br>合计 '+esc(tok(v))+' ('+esc(ratioStr(v/QUOTA))+' 额度)'+
-             '<br>输入 '+esc(tok(r.pin))+' · 输出 '+esc(tok(r.pout));
+      var hit=r.pin>0?(r.cache/r.pin*100).toFixed(1)+"%":"—";
+      return '<b>'+esc(r.date)+'</b><br>合计 '+esc(tok(v))+
+             '<br>输入 '+esc(tok(r.pin))+' · 输出 '+esc(tok(r.pout))+
+             '<br>缓存命中 '+esc(hit);
     });
   }
 
@@ -606,26 +667,27 @@ td.num{font-family:var(--mono)}
   function renderTable(){
     var rows=state.rows;
     if(!rows.length){ el("tbody").innerHTML='<tr><td colspan="8">没有记录</td></tr>'; el("tfoot").innerHTML=""; return; }
-    var tot={spend:0,ok:0,fail:0,pin:0,pout:0};
+    var tot={spend:0,ok:0,fail:0,pin:0,pout:0,cache:0};
     el("tbody").innerHTML = rows.slice().sort(function(a,b){ return a.date<b.date?1:a.date>b.date?-1:0; }).map(function(r){
-      tot.spend+=r.spend; tot.ok+=r.ok; tot.fail+=r.fail; tot.pin+=r.pin; tot.pout+=r.pout;
-      var v=r.pin+r.pout, pct=v/QUOTA;
-      var tone = pct>=0.9?"color:var(--bad);font-weight:600" : pct>=0.7?"color:var(--warn);font-weight:600" : "";
+      tot.spend+=r.spend; tot.ok+=r.ok; tot.fail+=r.fail; tot.pin+=r.pin; tot.pout+=r.pout; tot.cache+=r.cache;
+      var v=r.pin+r.pout;
+      var hit = r.pin>0 ? (r.cache/r.pin*100) : null;
       return '<tr><td>'+esc(r.date)+'</td>'+
         '<td class="num">'+esc(tok(r.pin))+'</td>'+
         '<td class="num">'+esc(tok(r.pout))+'</td>'+
         '<td class="num" style="font-weight:600">'+esc(tok(v))+'</td>'+
-        '<td class="num" style="'+tone+'">'+esc(ratioStr(pct))+'</td>'+
+        '<td class="num">'+(hit==null?"—":hit.toFixed(1)+"%")+'</td>'+
         '<td class="num">'+esc(int(r.ok))+'</td>'+
         '<td class="num" style="color:'+(r.fail>0?"var(--bad)":"inherit")+'">'+esc(int(r.fail))+'</td>'+
         '<td class="num">'+esc(money(r.spend))+'</td></tr>';
     }).join("");
     var totTok=tot.pin+tot.pout;
+    var hitAll = tot.pin>0 ? (tot.cache/tot.pin*100).toFixed(1)+"%" : "—";
     el("tfoot").innerHTML='<tr><td>合计</td>'+
       '<td class="num">'+esc(tok(tot.pin))+'</td>'+
       '<td class="num">'+esc(tok(tot.pout))+'</td>'+
       '<td class="num">'+esc(tok(totTok))+'</td>'+
-      '<td class="num">—</td>'+
+      '<td class="num">'+esc(hitAll)+'</td>'+
       '<td class="num">'+esc(int(tot.ok))+'</td>'+
       '<td class="num">'+esc(int(tot.fail))+'</td>'+
       '<td class="num">'+esc(money(tot.spend))+'</td></tr>';
