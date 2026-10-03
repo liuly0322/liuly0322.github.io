@@ -3,13 +3,13 @@
 <title>Vue Router scroll history reproduction</title>
 <body style="height: 5000px">
 <nav style="position: fixed; top: 0; background: white">
-  <button onclick="router.push('/')">A</button>
-  <button onclick="router.push('/b')">B</button>
+  <button onclick="router.push('/')">Home</button>
+  <button onclick="router.push('/some_url')">Some URL</button>
   <button onclick="router.back()">Back</button>
   <button onclick="window.scrollTo(0, 1000)">1000</button>
   <button onclick="window.scrollTo(0, 2000)">2000</button>
-  <p>B → A → 1000 → Back → Back → B → A → 2000 → B → Back</p>
-  <p>Expected: 2000; actual: 1000.</p>
+  <p>Some URL → 1000 → Back → Some URL → 2000 → Home → Back</p>
+  <p>Start at Home. Expected: 2000; actual: 1000.</p>
   <pre></pre>
 </nav>
 <script src="https://unpkg.com/vue@3.5.43/dist/vue.global.prod.js"></script>
@@ -17,7 +17,7 @@
 <script>
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
-  routes: ['/', '/b'].map(path => ({ path, component: {} })),
+  routes: ['/', '/some_url'].map(path => ({ path, component: {} })),
   scrollBehavior(to, from, savedPosition) {
     document.querySelector('pre').textContent = JSON.stringify({
       savedPosition, historyScroll: history.state.scroll
