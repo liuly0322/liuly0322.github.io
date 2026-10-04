@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Byte Tree</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1e222b;
+      --text: #e7eaf0;
+      --muted: #9097a6;
+      --border: #2a303b;
+      --accent: #8aa2ff;
+      --accent-soft: rgba(138, 162, 255, .14);
+      --bar: #6f89ee;
+      --code: #cbd3e6;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+            "Segoe UI", sans-serif;
+    }
+
+    body { padding: 20px; }
+
+    .app {
+      width: min(1500px, 100%);
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: .01em;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, .9fr) minmax(420px, 1.35fr);
+      gap: 14px;
+      min-height: calc(100vh - 82px);
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 46px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-title {
+      font-weight: 650;
+    }
+
+    .stats {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      min-height: 520px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      padding: 14px;
+      background: #11141a;
+      color: var(--code);
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      tab-size: 2;
+    }
+
+    .tree {
+      flex: 1;
+      overflow: auto;
+      padding: 8px 8px 18px;
+    }
+
+    .empty {
+      padding: 28px 18px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    details.node {
+      margin: 1px 0;
+    }
+
+    details.node > summary {
+      list-style: none;
+    }
+
+    details.node > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .row {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 10px;
+      min-height: 34px;
+      padding: 4px 8px;
+      border-radius: 7px;
+      cursor: default;
+    }
+
+    .row:hover {
+      background: rgba(255, 255, 255, .035);
+    }
+
+    details.node > summary .row {
+      cursor: pointer;
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 7px;
+    }
+
+    .twisty {
+      width: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 10px;
+      transition: transform .12s ease;
+    }
+
+    details[open] > summary .twisty {
+      transform: rotate(90deg);
+    }
+
+    .code {
+      min-width: 0;
+      overflow: hidden;
+      color: var(--code);
+      font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .kind {
+      color: #9fb0ff;
+    }
+
+    .text-node .kind {
+      color: #9ad7bb;
+    }
+
+    .comment-node .kind {
+      color: #c7a3df;
+    }
+
+    .byte {
+      color: var(--muted);
+      font: 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: nowrap;
+    }
+
+    .byte strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .bar-wrap {
+      width: 92px;
+      height: 5px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .bar {
+      height: 100%;
+      min-width: 1px;
+      border-radius: inherit;
+      background: var(--bar);
+    }
+
+    .children {
+      margin-left: 18px;
+      padding-left: 10px;
+      border-left: 1px solid var(--border);
+    }
+
+    .leaf {
+      margin: 1px 0;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 6px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 5px 9px;
+      background: var(--panel-2);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    button:hover {
+      border-color: #3a4352;
+      background: #242934;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 10px; }
+      .layout {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      textarea { min-height: 42vh; }
+      .tree { max-height: 58vh; }
+      .bar-wrap { display: none; }
+      .row { grid-template-columns: minmax(0, 1fr) auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>HTML Byte Tree</h1>
+    <div class="hint">按 UTF‑8 计算 · 保留原始源码片段长度</div>
+  </div>
+
+  <div class="layout">
+    <section class="panel">
+      <div class="panel-head">
+        <div class="panel-title">HTML 源码</div>
+        <div id="sourceStats" class="stats">0 B</div>
+      </div>
+      <textarea id="input" spellcheck="false" placeholder="把 HTML 粘贴到这里……"></textarea>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <span class="panel-title">Tree</span>
+          <span id="treeStats" class="stats"></span>
+        </div>
+        <div class="toolbar">
+          <button id="expandAll">全部展开</button>
+          <button id="collapseAll">全部折叠</button>
+        </div>
+      </div>
+      <div id="tree" class="tree">
+        <div class="empty">粘贴 HTML 后会在这里显示结构和字节占用。</div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const input = document.querySelector('#input')
+const treeEl = document.querySelector('#tree')
+const sourceStats = document.querySelector('#sourceStats')
+const treeStats = document.querySelector('#treeStats')
+const encoder = new TextEncoder()
+
+const VOID_TAGS = new Set([
+  'area','base','br','col','embed','hr','img','input','link','meta',
+  'param','source','track','wbr'
+])
+
+function bytes(text) {
+  return encoder.encode(text).length
+}
+
+function formatBytes(n) {
+  if (n < 1024) return `${n} B`
+  if (n < 1024 * 1024) return `${(n / 1024).toFixed(n < 10 * 1024 ? 2 : 1)} KiB`
+  return `${(n / 1024 / 1024).toFixed(2)} MiB`
+}
+
+function esc(s) {
+  return s.replace(/[&<>"']/g, c => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[c]))
+}
+
+/*
+  Lightweight source-preserving HTML tree parser.
+
+  It is intentionally not a full HTML5 parser. Its purpose is byte inspection:
+  every node keeps offsets into the original input so the displayed byte counts
+  reflect the pasted source rather than DOMParser's re-serialized markup.
+*/
+function parseHTMLSource(source) {
+  const root = {
+    type: 'root',
+    start: 0,
+    openEnd: 0,
+    closeStart: source.length,
+    end: source.length,
+    children: []
+  }
+
+  const stack = [root]
+  let i = 0
+
+  const pushLeaf = (type, start, end, label = '') => {
+    if (end <= start) return
+    stack.at(-1).children.push({
+      type, start, end, openEnd: end, closeStart: end,
+      children: [], label
+    })
+  }
+
+  while (i < source.length) {
+    if (source.startsWith('<!--', i)) {
+      const endPos = source.indexOf('-->', i + 4)
+      const end = endPos === -1 ? source.length : endPos + 3
+      pushLeaf('comment', i, end)
+      i = end
+      continue
+    }
+
+    if (source[i] !== '<') {
+      const next = source.indexOf('<', i)
+      const end = next === -1 ? source.length : next
+      pushLeaf('text', i, end)
+      i = end
+      continue
+    }
+
+    if (/^<!doctype\b/i.test(source.slice(i, i + 10))) {
+      const endPos = source.indexOf('>', i + 2)
+      const end = endPos === -1 ? source.length : endPos + 1
+      pushLeaf('doctype', i, end)
+      i = end
+      continue
+    }
+
+    if (source.startsWith('</', i)) {
+      const endPos = findTagEnd(source, i + 2)
+      const end = endPos === -1 ? source.length : endPos + 1
+      const match = source.slice(i + 2, end).match(/^\s*([^\s/>]+)/)
+      const name = match ? match[1].toLowerCase() : ''
+
+      let found = -1
+      for (let s = stack.length - 1; s > 0; s--) {
+        if (stack[s].name === name) {
+          found = s
+          break
+        }
+      }
+
+      if (found !== -1) {
+        while (stack.length - 1 > found) {
+          const orphan = stack.pop()
+          orphan.closeStart = i
+          orphan.end = i
+        }
+        const node = stack.pop()
+        node.closeStart = i
+        node.end = end
+      } else {
+        pushLeaf('text', i, end)
+      }
+
+      i = end
+      continue
+    }
+
+    if (source.startsWith('<!', i) || source.startsWith('<?', i)) {
+      const endPos = findTagEnd(source, i + 2)
+      const end = endPos === -1 ? source.length : endPos + 1
+      pushLeaf('declaration', i, end)
+      i = end
+      continue
+    }
+
+    const endPos = findTagEnd(source, i + 1)
+    if (endPos === -1) {
+      pushLeaf('text', i, source.length)
+      break
+    }
+
+    const end = endPos + 1
+    const raw = source.slice(i, end)
+    const match = raw.match(/^<\s*([^\s/>]+)/)
+
+    if (!match) {
+      pushLeaf('text', i, end)
+      i = end
+      continue
+    }
+
+    const name = match[1].toLowerCase()
+    const selfClosing = /\/\s*>$/.test(raw) || VOID_TAGS.has(name)
+    const node = {
+      type: 'element',
+      name,
+      start: i,
+      openEnd: end,
+      closeStart: end,
+      end,
+      children: []
+    }
+
+    stack.at(-1).children.push(node)
+    i = end
+
+    if (selfClosing) continue
+
+    // Treat script/style/textarea/title as raw-text-ish blocks so '<' inside
+    // their contents does not break the byte tree.
+    if (['script', 'style', 'textarea', 'title'].includes(name)) {
+      const closeRe = new RegExp(`</\\s*${name}\\s*>`, 'ig')
+      closeRe.lastIndex = i
+      const m = closeRe.exec(source)
+      if (m) {
+        if (m.index > i) {
+          node.children.push({
+            type: 'text',
+            start: i,
+            end: m.index,
+            openEnd: m.index,
+            closeStart: m.index,
+            children: []
+          })
+        }
+        node.closeStart = m.index
+        node.end = m.index + m[0].length
+        i = node.end
+      } else {
+        if (i < source.length) {
+          node.children.push({
+            type: 'text',
+            start: i,
+            end: source.length,
+            openEnd: source.length,
+            closeStart: source.length,
+            children: []
+          })
+        }
+        node.closeStart = source.length
+        node.end = source.length
+        i = source.length
+      }
+      continue
+    }
+
+    stack.push(node)
+  }
+
+  while (stack.length > 1) {
+    const node = stack.pop()
+    node.closeStart = source.length
+    node.end = source.length
+  }
+
+  return root
+}
+
+function findTagEnd(source, start) {
+  let quote = null
+  for (let i = start; i < source.length; i++) {
+    const c = source[i]
+    if (quote) {
+      if (c === quote) quote = null
+      continue
+    }
+    if (c === '"' || c === "'") {
+      quote = c
+      continue
+    }
+    if (c === '>') return i
+  }
+  return -1
+}
+
+function nodeInfo(node, source) {
+  if (node.type === 'element') {
+    const openBytes = bytes(source.slice(node.start, node.openEnd))
+    const closeBytes = bytes(source.slice(node.closeStart, node.end))
+    const subtreeBytes = bytes(source.slice(node.start, node.end))
+    return {
+      ownBytes: openBytes + closeBytes,
+      subtreeBytes,
+      label: `<${node.name}>`,
+      preview: esc(source.slice(node.start, node.openEnd).replace(/\s+/g, ' ').trim())
+    }
+  }
+
+  const raw = source.slice(node.start, node.end)
+  const size = bytes(raw)
+  if (node.type === 'text') {
+    const text = raw.replace(/\s+/g, ' ').trim()
+    return {
+      ownBytes: size,
+      subtreeBytes: size,
+      label: '#text',
+      preview: esc(text ? `“${text}”` : '(whitespace)')
+    }
+  }
+
+  return {
+    ownBytes: size,
+    subtreeBytes: size,
+    label: node.type === 'comment' ? '#comment' :
+           node.type === 'doctype' ? '<!doctype>' : '#declaration',
+    preview: esc(raw.replace(/\s+/g, ' ').trim())
+  }
+}
+
+function render(source) {
+  const total = bytes(source)
+  sourceStats.textContent = formatBytes(total)
+
+  if (!source.trim()) {
+    treeStats.textContent = ''
+    treeEl.innerHTML = '<div class="empty">粘贴 HTML 后会在这里显示结构和字节占用。</div>'
+    return
+  }
+
+  const root = parseHTMLSource(source)
+  const nodeCount = countNodes(root)
+  treeStats.textContent = ` · ${nodeCount} nodes`
+
+  treeEl.innerHTML = ''
+  for (const child of root.children) {
+    treeEl.appendChild(renderNode(child, source, total))
+  }
+}
+
+function countNodes(node) {
+  return node.children.reduce((n, child) => n + 1 + countNodes(child), 0)
+}
+
+function renderNode(node, source, totalBytes) {
+  const info = nodeInfo(node, source)
+  const hasChildren = node.children.length > 0
+  const ratio = totalBytes ? Math.max(0.5, info.subtreeBytes / totalBytes * 100) : 0
+
+  const row = document.createElement('div')
+  row.className = `row ${node.type}-node`
+  row.title = node.type === 'element'
+    ? `节点自身: ${formatBytes(info.ownBytes)}\n整棵子树: ${formatBytes(info.subtreeBytes)}`
+    : `${formatBytes(info.subtreeBytes)}`
+
+  row.innerHTML = `
+    <div class="label">
+      <span class="twisty">${hasChildren ? '▶' : ''}</span>
+      <span class="code">
+        <span class="kind">${esc(info.label)}</span>
+        ${info.preview ? ` <span>${info.preview}</span>` : ''}
+      </span>
+    </div>
+    <div class="bar-wrap" aria-hidden="true">
+      <div class="bar" style="width:${Math.min(100, ratio)}%"></div>
+    </div>
+    <div class="byte">
+      ${node.type === 'element'
+        ? `<span title="自身开闭标签字节">self <strong>${formatBytes(info.ownBytes)}</strong></span>
+           · <span title="包含所有子节点的源码字节">tree <strong>${formatBytes(info.subtreeBytes)}</strong></span>`
+        : `<strong>${formatBytes(info.subtreeBytes)}</strong>`}
+    </div>
+  `
+
+  if (!hasChildren) {
+    const leaf = document.createElement('div')
+    leaf.className = 'leaf'
+    row.querySelector('.twisty').textContent = ''
+    leaf.appendChild(row)
+    return leaf
+  }
+
+  const details = document.createElement('details')
+  details.className = 'node'
+  details.open = true
+
+  const summary = document.createElement('summary')
+  summary.appendChild(row)
+  details.appendChild(summary)
+
+  const children = document.createElement('div')
+  children.className = 'children'
+  for (const child of node.children) {
+    children.appendChild(renderNode(child, source, totalBytes))
+  }
+  details.appendChild(children)
+  return details
+}
+
+let timer
+input.addEventListener('input', () => {
+  clearTimeout(timer)
+  timer = setTimeout(() => render(input.value), 80)
+})
+
+document.querySelector('#expandAll').addEventListener('click', () => {
+  treeEl.querySelectorAll('details.node').forEach(d => d.open = true)
+})
+
+document.querySelector('#collapseAll').addEventListener('click', () => {
+  treeEl.querySelectorAll('details.node').forEach(d => d.open = false)
+})
+
+input.value = `<main class="post">
+  <h1>Hello 世界</h1>
+  <p>这是一个 <strong>HTML byte tree</strong> 示例。</p>
+  <!-- comment -->
+</main>`
+render(input.value)
+</script>
+</body>
+</html>
